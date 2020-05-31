@@ -3,15 +3,19 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver import Chrome
 from time import sleep
-
+import click
 
 class Translator:
-    def __init__(self, headless=False):
+    def __init__(self,browser="Firefox", headless=False):
         options = Options()
         if headless: options.headless = True
-        self._br = Chrome(chrome_options=options)
+        if browser == "Firefox":
+            from selenium.webdriver import Firefox
+            self._br = Firefox()
+        else:
+            from selenium.webdriver import Chrome
+            self.br = Chrome()
         self._br.get("https://www.freetranslations.org/english-to-arabic-translation.html")
         # self._br.set_page_load_timeout(25)
 
@@ -32,6 +36,12 @@ class Translator:
         self._br.find_element_by_class_name("translate-form-control").click()
         WebDriverWait(self._br, 10).until(ec.presence_of_element_located((By.CLASS_NAME, "mttextarea")))
         return self._br.find_element_by_xpath("//*[@id='TranslationOutput']/div").text
-
+    #def reverse(self,string):
+    #    tag = self._br.find_element_id("LangPair_SwapImg")
     def close(self):
         self._br.close()
+
+@click.command
+@click.option('--browser', default="Firefox", help='browser to run the script to. Options: Firefox, Chrome')
+def translator(browser):
+    return Translator()
