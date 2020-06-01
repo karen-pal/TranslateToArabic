@@ -36,3 +36,5 @@ for i in range(2):
     results = open("results_echo" + str(i) + ".txt", "w")
     echo(10, results)
     results.close()
+
+tr.close()

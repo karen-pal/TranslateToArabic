@@ -15,7 +15,7 @@ class Translator:
             self._br = Firefox()
         else:
             from selenium.webdriver import Chrome
-            self.br = Chrome()
+            self._br = Chrome()
         self._br.get("https://www.freetranslations.org/english-to-arabic-translation.html")
         # self._br.set_page_load_timeout(25)
 
