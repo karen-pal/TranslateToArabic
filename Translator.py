@@ -36,8 +36,12 @@ class Translator:
         self._br.find_element_by_class_name("translate-form-control").click()
         WebDriverWait(self._br, 10).until(ec.presence_of_element_located((By.CLASS_NAME, "mttextarea")))
         return self._br.find_element_by_xpath("//*[@id='TranslationOutput']/div").text
-    #def reverse(self,string):
-    #    tag = self._br.find_element_id("LangPair_SwapImg")
+
+    def reverse(self,string):
+        tag = self._br.find_element_by_id("LangPair_SwapImg")
+        tag.click()
+        return self.translate(string)
+
     def close(self):
         self._br.close()
 
