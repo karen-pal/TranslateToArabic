@@ -34,10 +34,12 @@ Install Selenium and click using:
 pip install selenium click
 ```
 
+If you use **Chrome**
 Then download Chrome WebDriver from
 [here](https://chromedriver.storage.googleapis.com/index.html?path=2.46/),
 then extract and place it in the same folder.
-or if you choose to use Firefox, install geckodriver
+
+or if you choose to use **Firefox**, install geckodriver
 
 ```
 sudo apt install firefox-geckodriver
