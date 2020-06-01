@@ -28,7 +28,8 @@ def echo(n, results_file):
         results_file.write(english_again)
         results_file.write("\n")
         print(i, " [finished writting to file]")
-        to_translate.append(english_again)
+        if english_again not in to_translate:
+            to_translate.append(english_again)
 
 
 for i in range(2):
