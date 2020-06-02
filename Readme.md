@@ -50,7 +50,7 @@ sudo apt install firefox-geckodriver
 
 - Translator.py: A class which opens the browser and provide a function to translate text.
 - Sample.py: A simple script that demonstrates the use of Translator on a text file.
-- echoscript.py: A personal script that echoes back personal poems written by me, Karen.
+- echo.py: Module that echoes back personal poems written by me, Karen.
 
 ### References
 
