@@ -12,15 +12,16 @@ to_translate = [
 
 class InsideCave:
     def __init__(self, *, resonance):
-        self.tr = Translator()
         self.poems = to_translate
         self.resonance = resonance
+        self.languages = ["turkish","arab","hindi","greek"]
 
-    def echo(self, out_file):
+    def echo(self, out_file, language):
+        tr = Translator(language)
         for i in range(self.resonance):
             text = random.choice(self.poems)
-            translated_to_arab = self.tr.translate(text)
-            english_again = self.tr.reverse(translated_to_arab)
+            translated_to_arab = tr.translate(text)
+            english_again = tr.reverse(translated_to_arab)
 
             print(text)
             print(translated_to_arab)
@@ -35,10 +36,10 @@ class InsideCave:
             print(i, " [finished writting to file]")
             if english_again not in self.poems:
                 self.poems.append(english_again)
+        tr.close()
 
     def propagate(self):
-        for i in range(2):
-            results = open("results_echo" + str(i) + ".txt", "w")
-            self.echo(results)
-            results.close()
-        self.tr.close()
+        for i in range(len(self.languages)):
+            results_file = open("results_echo_" + self.languages[i] + ".txt", "w")
+            self.echo(results_file, self.languages[i])
+            results_file.close()

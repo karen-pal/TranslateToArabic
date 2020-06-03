@@ -6,17 +6,21 @@ from selenium.webdriver.common.by import By
 from time import sleep
 import click
 
+LANGUAGES = {
+    "turkish":"https://www.freetranslations.org/english-to-turkish-translation.html",
+    "arab":"https://www.freetranslations.org/english-to-arabic-translation.html",
+    "greek":"https://www.freetranslations.org/english-to-greek-translation.html",
+    "hindi":"https://www.freetranslations.org/english-to-hindi-translation.html",
+}
+
 class Translator:
-    def __init__(self,browser="Firefox", headless=False):
+    def __init__(self,language, browser="Firefox", headless=False):
         options = Options()
         if headless: options.headless = True
         if browser == "Firefox":
             from selenium.webdriver import Firefox
             self._br = Firefox()
-        else:
-            from selenium.webdriver import Chrome
-            self._br = Chrome()
-        self._br.get("https://www.freetranslations.org/english-to-arabic-translation.html")
+        self._br.get(LANGUAGES[language])
         # self._br.set_page_load_timeout(25)
 
     def translate(self, string):
